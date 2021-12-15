@@ -1,0 +1,26 @@
+{
+  "name": "governance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "generate-merkle-root": "node scripts/generate-merkle-root.js",
+    "test-deploy": "hardhat run scripts/test-deploy.js --network testnet"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/contracts": "3.1.0",
+    "openzeppelin-solidity-2.3.0": "npm:openzeppelin-solidity@2.3.0",
+    "chai": "^4.3.4",
+    "commander": "^6.1.0",
+    "dotenv": "^10.0.0",
+    "ethereum-waffle": "^3.3.0",
+    "ethereumjs-util": "^7.0.4",
+    "ethers": "^5.3.1",
+    "hardhat": "^2.6.6"
+  }
+}
