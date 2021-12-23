@@ -10,12 +10,12 @@ const endTime = 1656601200;
 
 async function main() {
     const accounts = await ethers.getSigners();
-    const signer = accounts[1].address;
-    console.log('signer:', signer);
+    const signer = accounts[1];
+    console.log('signer:', signer.address);
 
     const MerkleDistributorFactory = await hre.ethers.getContractFactory('MerkleDistributor');
 
-    const MerkleDistributor = await MerkleDistributorFactory.deploy(
+    const MerkleDistributor = await MerkleDistributorFactory.connect(signer).deploy(
         airdropToken,
         merkleRoot,
         endTime

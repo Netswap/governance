@@ -5,26 +5,26 @@ const METIS = '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000';
 
 async function main() {
     const accounts = await ethers.getSigners();
-    const signer = accounts[1].address;
-    console.log('signer:', signer);
+    const signer = accounts[1];
+    console.log('signer:', signer.address);
 
     const TreasuryFactory = await hre.ethers.getContractFactory('CommunityTreasury');
     const NETTFactory = await hre.ethers.getContractFactory('NETT');
     const StakingRewardsFactory = await hre.ethers.getContractFactory('StakingRewards');
 
-    const NETT = await NETTFactory.deploy();
+    const NETT = await NETTFactory.connect(signer).deploy();
     await NETT.deployed();
     console.log('NETT deployed to: ', NETT.address);
 
-    const StakingRewards = await StakingRewardsFactory.deploy(
-        signer,
+    const StakingRewards = await StakingRewardsFactory.connect(signer).deploy(
+        signer.address,
         METIS,
         NETT.address
     );
     await StakingRewards.deployed();
     console.log('StakingRewards deployed to: ', StakingRewards.address);
 
-    const Treasury = await TreasuryFactory.deploy(NETT.address);
+    const Treasury = await TreasuryFactory.connect(signer).deploy(NETT.address);
     await Treasury.deployed();
     console.log('CommunityTreasury deployed to: ', Treasury.address);
 
