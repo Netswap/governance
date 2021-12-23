@@ -70,6 +70,10 @@ contract MerkleDistributor is IMerkleDistributor {
         started = started_;
     }
 
+    function setEndTime(uint256 _endTime) onlyOwner external {
+        endTime = _endTime;
+    }
+
     function withdrawRemaining() onlyOwner external {
         require(!started || block.timestamp > endTime, "only can be called when not started or ended");
         require(IERC20(token).transfer(msg.sender, IERC20(token).balanceOf(address(this))), 'MerkleDistributor: Transfer failed.');
