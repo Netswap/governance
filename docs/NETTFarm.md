@@ -30,12 +30,12 @@ But to make your life easier, we have implemented the SimpleRewarderPerSecond an
 
 Examples:
 
-- [contracts/rewarders/SimpleRewarderPerSec.sol](contracts/rewarders/SimpleRewarderPerSec.sol) (recommended)
-- [contracts/rewarders/MasterChefRewarderPerSec.sol](contracts/rewarders/MasterChefRewarderPerSec.sol)
+- [contracts/rewarders/SimpleRewarderPerSec.sol](../contracts/rewarders/SimpleRewarderPerSec.sol) (recommended)
+- [contracts/rewarders/MasterChefRewarderPerSec.sol](../contracts/rewarders/MasterChefRewarderPerSec.sol)
 
 ## Example: Simple Rewarder (recommended)
 
-- [contracts/rewarders/SimpleRewarderPerSec.sol](contracts/rewarders/SimpleRewarderPerSec.sol) (recommended)
+- [contracts/rewarders/SimpleRewarderPerSec.sol](../contracts/rewarders/SimpleRewarderPerSec.sol) (recommended)
 
 This is the version we recommend simply because it's the easiest and less prone to accidental failures.
 
@@ -62,7 +62,7 @@ To stop:
 
 ## Example: MasterChef Rewarder
 
-- [contracts/rewarders/MasterChefRewarderPerSec.sol](contracts/rewarders/MasterChefRewarderPerSec.sol)
+- [contracts/rewarders/MasterChefRewarderPerSec.sol](../contracts/rewarders/MasterChefRewarderPerSec.sol)
 
 This is only applicable if your project uses a Sushi-style MasterChef contract.
 
