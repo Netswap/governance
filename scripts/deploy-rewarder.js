@@ -17,7 +17,7 @@ const lpToken2 = '0xE77f2aA9Ba9824170d7C007117461C0d319EF3a9';
 const tokenPerSec = '10000000000000000'
 
 // Testnet NETTFarm
-const NETTFarm = '0x8127bd4C0e71d5B1f4B28788bb8C4708b51934F9';
+const NETTFarm = '0xd49b1C1030AE2F43010e4FEBf3dC00eAe5E0e4B5';
 // Mainnet NETTFarm
 // const NETT = ''
 
