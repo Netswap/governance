@@ -19,7 +19,7 @@ interface IRewarder {
 
 interface IMasterChef {
     struct PoolInfo {
-        uint256 allocPoint; // How many allocation points assigned to this pool. JOE to distribute per block.
+        uint256 allocPoint; // How many allocation points assigned to this pool. Reward token to distribute per block.
     }
 
     function deposit(uint256 _pid, uint256 _amount) external;
@@ -186,7 +186,7 @@ interface INETTFarm {
         MCV1.deposit(MCV1_pid, 0);
     }
 
-    /// @notice Function called by NETTFarm whenever staker claims JOE harvest. Allows staker to also receive a 2nd reward token.
+    /// @notice Function called by NETTFarm whenever staker claims NETT harvest. Allows staker to also receive a 2nd reward token.
     /// @param _user Address of user
     /// @param _lpAmount Number of LP tokens the user has
     function onNETTReward(address _user, uint256 _lpAmount) external override onlyNTF {
