@@ -171,7 +171,7 @@ contract NETTFarm is Ownable {
         UserInfo storage user = userInfo[_pid][_user];
         uint256 accNETTPerShare = pool.accNETTPerShare;
         uint256 lpSupply = pool.lpSupply;
-        if (block.timestamp > pool.lastRewardTimestamp && lpSupply != 0) {
+        if (block.timestamp > pool.lastRewardTimestamp && lpSupply != 0 && totalAllocPoint > 0) {
             uint256 multiplier = block.timestamp.sub(pool.lastRewardTimestamp);
             uint256 nettReward = multiplier.mul(nettPerSec).mul(pool.allocPoint).div(totalAllocPoint);
             accNETTPerShare = accNETTPerShare.add(nettReward.mul(1e12).div(lpSupply));
@@ -218,9 +218,9 @@ contract NETTFarm is Ownable {
             return;
         }
         uint256 multiplier = block.timestamp.sub(pool.lastRewardTimestamp);
-        uint256 nettReward = multiplier.mul(nettPerSec).mul(pool.allocPoint).div(totalAllocPoint);
+        uint256 nettReward = totalAllocPoint > 0 ? multiplier.mul(nettPerSec).mul(pool.allocPoint).div(totalAllocPoint) : 0;
         nett.mint(address(this), nettReward);
-        // Mint additional 10% of reward to dev address if it isn't address zero
+        // Mint additional 10% of reward to dev address if it isn't zero address
         if (devAddr != address(0)) {
             nett.mint(devAddr, nettReward.mul(devPercent).div(100));
         }
