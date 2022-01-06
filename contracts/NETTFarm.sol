@@ -212,7 +212,7 @@ contract NETTFarm is Ownable {
         if (block.timestamp <= pool.lastRewardTimestamp) {
             return;
         }
-        uint256 lpSupply = pool.lpToken.balanceOf(address(this));
+        uint256 lpSupply = pool.lpSupply;
         if (lpSupply == 0) {
             pool.lastRewardTimestamp = block.timestamp;
             return;
@@ -247,9 +247,9 @@ contract NETTFarm is Ownable {
         if (address(rewarder) != address(0)) {
             rewarder.onNETTReward(msg.sender, user.amount);
         }
-
-        pool.lpToken.safeTransferFrom(msg.sender, address(this), _amount);
+        
         pool.lpSupply = pool.lpSupply.add(_amount);
+        pool.lpToken.safeTransferFrom(msg.sender, address(this), _amount);
         emit Deposit(msg.sender, _pid, _amount);
     }
 
@@ -276,8 +276,8 @@ contract NETTFarm is Ownable {
             rewarder.onNETTReward(msg.sender, user.amount);
         }
 
-        pool.lpToken.safeTransfer(msg.sender, _amount);
         pool.lpSupply = pool.lpSupply.sub(_amount);
+        pool.lpToken.safeTransfer(msg.sender, _amount);
         emit Withdraw(msg.sender, _pid, _amount);
     }
 
