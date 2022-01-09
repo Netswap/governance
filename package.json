@@ -10,7 +10,9 @@
     "test-deploy": "hardhat run scripts/test-deploy.js --network testnet",
     "test-merkle-deploy": "hardhat run scripts/test-merkle-deploy.js --network testnet",
     "deploy": "hardhat run scripts/deploy.js --network mainnet",
-    "merkle-deploy": "hardhat run scripts/merkle-deploy.js --network mainnet"
+    "merkle-deploy": "hardhat run scripts/merkle-deploy.js --network mainnet",
+    "deploy-farm": "hardhat run scripts/deploy-farm.js --network mainnet",
+    "add-pools": "hardhat run scripts/add.js --network mainnet"
   },
   "license": "MIT",
   "devDependencies": {

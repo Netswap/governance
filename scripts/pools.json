@@ -1,0 +1,68 @@
+[
+    {
+        "name": "NETT/m.USDT",
+        "lpToken": "0x7d02ab940d7dd2b771e59633bbc1ed6ec2b99af1",
+        "allocPoint": "9000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "NETT/m.USDC",
+        "lpToken": "0x0724d37522585e87d27c802728e824862dc72861",
+        "allocPoint": "9000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "NETT/Metis",
+        "lpToken": "0x60312d4ebbf3617d3d33841906b5868a86931cbd",
+        "allocPoint": "16000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "NETT/WETH",
+        "lpToken": "0xc8ae82a0ab6ada2062b812827e1556c0fa448dd0",
+        "allocPoint": "12000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "NETT/BNB",
+        "lpToken": "0x3bf77b9192579826f260bc48f2214dfba840fce5",
+        "allocPoint": "12000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "Metis/WETH",
+        "lpToken": "0x59051b5f5172b69e66869048dc69d35db0b3610d",
+        "allocPoint": "6000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "Metis/m.USDT",
+        "lpToken": "0x3d60afecf67e6ba950b499137a72478b2ca7c5a1",
+        "allocPoint": "4000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "Metis/m.USDC",
+        "lpToken": "0x5ae3ee7fbb3cb28c17e7adc3a6ae605ae2465091",
+        "allocPoint": "4000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "WETH/m.USDT",
+        "lpToken": "0x4db4ce7f5b43a6b455d3c3057b63a083b09b8376",
+        "allocPoint": "3000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "WETH/m.USDC",
+        "lpToken": "0xf5988809ac97c65121e2c34f5d49558e3d12c253",
+        "allocPoint": "3000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    },
+    {
+        "name": "m.USDT/m.USDC",
+        "lpToken": "0x1cad5f8f5d4c0ad49646b2565cc0ca725e4280ea",
+        "allocPoint": "3000",
+        "rewarder": "0x0000000000000000000000000000000000000000"
+    }
+]
