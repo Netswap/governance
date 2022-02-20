@@ -1,25 +1,35 @@
 const hre = require('hardhat');
 const fs = require('fs');
 
-// Testnet rewardToken
 // Metis
-const rewardToken1 = '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000';
-// TLINK
-const rewardToken2 = '0x3Aa437CB25bf718a8952603B24c2ACe332185d95';
+const Metis = '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000';
 
-// Testnet LP token
-// Metis/TUSDC
-const lpToken1 = '0xee87eB13DC2b6503F4039c418fd0fc2fedC15594';
-// Metis/TLINK
-const lpToken2 = '0xE77f2aA9Ba9824170d7C007117461C0d319EF3a9';
+//  LP token
+// NETT/m.USDC - pid 1
+const lpToken1 = '0x0724d37522585e87d27c802728e824862dc72861';
+// NETT/m.USDT - pid 0
+const lpToken2 = '0x7d02ab940d7dd2b771e59633bbc1ed6ec2b99af1';
+// WETH/NETT - pid 3
+const lpToken3 = '0xc8ae82a0ab6ada2062b812827e1556c0fa448dd0';
 
-// 0.01 per sec
-const tokenPerSec = '10000000000000000'
+// MINES/Metis - pid 12
+const MINESMetis = '0xa22e47e0e60caeaacd19a372ad3d14b9d7279e74';
+const perSec = '167824074074074';
 
-// Testnet NETTFarm
-const NETTFarm = '0xd49b1C1030AE2F43010e4FEBf3dC00eAe5E0e4B5';
+// NETT/m.USDC - 100 Metis for 30 days
+const tokenPerSec1 = '38580246913580'
+// NETT/m.USDT - 100 Metis for 30 days
+const tokenPerSec2 = '38580246913580'
+// WETH/NETT - 120 Metis for 30 days
+const tokenPerSec3 = '46296296296296'
+
 // Mainnet NETTFarm
-// const NETT = ''
+const NETTFarm = '0x9d1dbB49b2744A1555EDbF1708D64dC71B0CB052';
+
+// 2022-02-19 15:00 UTC
+// const startTime = 1645282800;
+// 2022-02-19 15:30 UTC
+const startTime = Math.round(Date.now()/1000) + 5*60
 
 async function main() {
     const accounts = await ethers.getSigners();
@@ -28,33 +38,64 @@ async function main() {
 
     const SimpleRewarderPerSecFactory = await hre.ethers.getContractFactory('SimpleRewarderPerSec');
 
-    const MetisRewarder = await SimpleRewarderPerSecFactory.connect(signer).deploy(
-        rewardToken1,
+    console.log('deploying MINESMetisRewarder...');
+    const MINESMetisRewarder = await SimpleRewarderPerSecFactory.connect(signer).deploy(
+        Metis,
+        MINESMetis,
+        perSec,
+        NETTFarm,
+        true,
+        startTime
+    );
+    await MINESMetisRewarder.deployed();
+    console.log('MINESMetisRewarder deployed to: ', MINESMetisRewarder.address);
+
+    console.log('deploying NETTUSDCRewarder...');
+    const NETTUSDCRewarder = await SimpleRewarderPerSecFactory.connect(signer).deploy(
+        Metis,
         lpToken1,
-        tokenPerSec,
+        tokenPerSec1,
         NETTFarm,
-        true
+        true,
+        startTime
     );
-    await MetisRewarder.deployed();
-    console.log('MetisRewarder deployed to: ', MetisRewarder.address);
-    const TLINKRewarder = await SimpleRewarderPerSecFactory.connect(signer).deploy(
-        rewardToken2,
+    await NETTUSDCRewarder.deployed();
+    console.log('NETTUSDCRewarder deployed to: ', NETTUSDCRewarder.address);
+
+    console.log('deploying NETTUSDTRewarder...');
+    const NETTUSDTRewarder = await SimpleRewarderPerSecFactory.connect(signer).deploy(
+        Metis,
         lpToken2,
-        tokenPerSec,
+        tokenPerSec2,
         NETTFarm,
-        false
+        true,
+        startTime
     );
-    await TLINKRewarder.deployed();
-    console.log('TLINKRewarder deployed to: ', TLINKRewarder.address);
+    await NETTUSDTRewarder.deployed();
+    console.log('NETTUSDTRewarder deployed to: ', NETTUSDTRewarder.address);
+
+    console.log('deploying NETTWETHRewarder...');
+    const NETTWETHRewarder = await SimpleRewarderPerSecFactory.connect(signer).deploy(
+        Metis,
+        lpToken3,
+        tokenPerSec3,
+        NETTFarm,
+        true,
+        startTime
+    );
+    await NETTWETHRewarder.deployed();
+    console.log('NETTWETHRewarder deployed to: ', NETTWETHRewarder.address);
 
     const addresses = {
-        MetisRewarder: MetisRewarder.address,
-        TLINKRewarder: TLINKRewarder.address,
+        MINESMetisRewarder: MINESMetisRewarder.address,
+        NETTUSDCRewarder: NETTUSDCRewarder.address,
+        NETTUSDTRewarder: NETTUSDTRewarder.address,
+        NETTWETHRewarder: NETTWETHRewarder.address,
     };
 
     console.log(addresses);
 
-    fs.writeFileSync(`${__dirname}/testnet-rewarders.json`, JSON.stringify(addresses, null, 4));
+    fs.writeFileSync(`${__dirname}/mainnet-rewarders.json`, JSON.stringify(addresses, null, 4));
 }
 
 main()

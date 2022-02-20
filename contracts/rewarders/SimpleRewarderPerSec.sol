@@ -97,18 +97,19 @@ interface INETTFarm {
         IERC20 _lpToken,
         uint256 _tokenPerSec,
         INETTFarm _NTF,
-        bool _isNative
+        bool _isNative,
+        uint256 _startTime
     ) public {
         require(Address.isContract(address(_rewardToken)), "constructor: reward token must be a valid contract");
         require(Address.isContract(address(_lpToken)), "constructor: LP token must be a valid contract");
         require(Address.isContract(address(_NTF)), "constructor: NETTFarm must be a valid contract");
-
+        require(_startTime > block.timestamp, "constructor: invaild start time");
         rewardToken = _rewardToken;
         lpToken = _lpToken;
         tokenPerSec = _tokenPerSec;
         NTF = _NTF;
         isNative = _isNative;
-        poolInfo = PoolInfo({lastRewardTimestamp: block.timestamp, accTokenPerShare: 0});
+        poolInfo = PoolInfo({lastRewardTimestamp: _startTime, accTokenPerShare: 0});
     }
 
     /// @notice Update reward variables of the given poolInfo.
@@ -161,7 +162,7 @@ interface INETTFarm {
                     require(success, "Transfer failed");
                     user.unpaidRewards = pending - balance;
                 } else {
-                    (bool success, ) = _user.call{value: balance}("");
+                    (bool success, ) = _user.call{value: pending}("");
                     require(success, "Transfer failed");
                     user.unpaidRewards = 0;
                 }
