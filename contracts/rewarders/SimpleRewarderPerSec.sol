@@ -58,6 +58,8 @@ interface INETTFarm {
     IERC20 public immutable lpToken;
     bool public immutable isNative;
     INETTFarm public immutable NTF;
+    uint256 public endTime;
+    uint256 public duration = 30 days;
 
     /// @notice Info of each NTF user.
     /// `amount` LP token amount the user has provided.
@@ -109,6 +111,7 @@ interface INETTFarm {
         tokenPerSec = _tokenPerSec;
         NTF = _NTF;
         isNative = _isNative;
+        endTime = _startTime.add(duration);
         poolInfo = PoolInfo({lastRewardTimestamp: _startTime, accTokenPerShare: 0});
     }
 
