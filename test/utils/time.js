@@ -29,26 +29,6 @@ const TimeHelper = {
     },
     advanceTime: async (time) => {
         await ethers.provider.send("evm_increaseTime", [time]);
-    },
-    duration: {
-        seconds: (val) => {
-            return BigNumber.from(val)
-        },
-        minutes: (val) => {
-            return BigNumber.from(val).mul(this.seconds("60"))
-        },
-        hours: (val) => {
-            return BigNumber.from(val).mul(this.minutes("60"))
-        },
-        days: (val) => {
-            return BigNumber.from(val).mul(this.hours("24"))
-        },
-        weeks: (val) => {
-            return BigNumber.from(val).mul(this.days("7"))
-        },
-        years: (val) => {
-            return BigNumber.from(val).mul(this.days("365"))
-        },
     }
 }
 

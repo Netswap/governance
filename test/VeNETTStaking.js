@@ -234,7 +234,7 @@ describe("VeNETTStaking Contract", function () {
                 .connect(this.alice)
                 .deposit(ethers.utils.parseEther("50"));
 
-            TimeHelper.advanceTimeAndBlock(29);
+            await TimeHelper.advanceTimeAndBlock(29);
 
             // Check veNETT balance before deposit
             expect(await this.veNETT.balanceOf(this.alice.address)).to.be.equal(0);
@@ -257,7 +257,7 @@ describe("VeNETTStaking Contract", function () {
                 .connect(this.alice)
                 .deposit(ethers.utils.parseEther("100"));
 
-            TimeHelper.advanceTimeAndBlock(this.speedUpDuration);
+            await TimeHelper.advanceTimeAndBlock(this.speedUpDuration);
 
             await this.veNETTStaking.connect(this.alice).claim();
 
@@ -286,7 +286,7 @@ describe("VeNETTStaking Contract", function () {
                 .connect(this.alice)
                 .deposit(ethers.utils.parseEther("100"));
 
-            TimeHelper.advanceTimeAndBlock(this.speedUpDuration);
+            await TimeHelper.advanceTimeAndBlock(this.speedUpDuration);
 
             await this.veNETTStaking
                 .connect(this.alice)
@@ -304,13 +304,13 @@ describe("VeNETTStaking Contract", function () {
                 .connect(this.alice)
                 .deposit(ethers.utils.parseEther("100"));
 
-            TimeHelper.advanceTimeAndBlock(100);
+            await TimeHelper.advanceTimeAndBlock(100);
 
             await this.veNETTStaking
                 .connect(this.alice)
                 .withdraw(ethers.utils.parseEther("100"));
 
-            TimeHelper.advanceTimeAndBlock(100);
+            await TimeHelper.advanceTimeAndBlock(100);
 
             await this.veNETTStaking
                 .connect(this.alice)
@@ -344,7 +344,7 @@ describe("VeNETTStaking Contract", function () {
             );
 
             // Increase by some amount of time less than speedUpDuration
-            await TimeHelper.advanceTimeAndBlock(this.speedUpDuration / 2);
+            await await TimeHelper.advanceTimeAndBlock(this.speedUpDuration / 2);
 
             // Deposit speedUpThreshold amount so that speed up period gets extended
             await this.veNETTStaking
@@ -373,7 +373,7 @@ describe("VeNETTStaking Contract", function () {
                 .deposit(ethers.utils.parseEther("100"));
 
             // Increase by `maxCapPct` seconds to ensure that user will have max veNETT after claiming
-            TimeHelper.advanceTimeAndBlock(this.maxCapPct);
+            await TimeHelper.advanceTimeAndBlock(this.maxCapPct);
 
             await this.veNETTStaking.connect(this.alice).claim();
 
@@ -385,7 +385,7 @@ describe("VeNETTStaking Contract", function () {
             // lastClaimTimestamp
             expect(claimAliceUserInfo[2]).to.be.equal(claimBlock.timestamp);
 
-            TimeHelper.advanceTimeAndBlock(this.maxCapPct);
+            await TimeHelper.advanceTimeAndBlock(this.maxCapPct);
 
             const pendingVeNETT = await this.veNETTStaking.getPendingVeNETT(
                 this.alice.address
@@ -436,7 +436,7 @@ describe("VeNETTStaking Contract", function () {
                 ethers.utils.parseEther("900")
             );
 
-            TimeHelper.advanceTimeAndBlock(this.speedUpDuration / 2);
+            await TimeHelper.advanceTimeAndBlock(this.speedUpDuration / 2);
 
             await this.veNETTStaking.connect(this.alice).claim();
             const claimBlock = await ethers.provider.getBlock();
@@ -504,7 +504,7 @@ describe("VeNETTStaking Contract", function () {
                 .connect(this.alice)
                 .deposit(ethers.utils.parseEther("100"));
 
-            TimeHelper.advanceTimeAndBlock(100);
+            await TimeHelper.advanceTimeAndBlock(100);
 
             await this.veNETTStaking.connect(this.alice).claim();
             const claimBlock = await ethers.provider.getBlock();
@@ -520,7 +520,7 @@ describe("VeNETTStaking Contract", function () {
                 .connect(this.alice)
                 .deposit(ethers.utils.parseEther("100"));
 
-            TimeHelper.advanceTimeAndBlock(49);
+            await TimeHelper.advanceTimeAndBlock(49);
 
             // Check veNETT balance before claim
             expect(await this.veNETT.balanceOf(this.alice.address)).to.be.equal(0);
@@ -541,19 +541,19 @@ describe("VeNETTStaking Contract", function () {
                 .connect(this.alice)
                 .deposit(ethers.utils.parseEther("100"));
 
-            TimeHelper.advanceTimeAndBlock(9);
+            await TimeHelper.advanceTimeAndBlock(9);
 
             await this.veNETTStaking
                 .connect(this.dev)
                 .setVeNETTPerSharePerSec(ethers.utils.parseEther("2"));
 
-            TimeHelper.advanceTimeAndBlock(9);
+            await TimeHelper.advanceTimeAndBlock(9);
 
             await this.veNETTStaking
                 .connect(this.dev)
                 .setVeNETTPerSharePerSec(ethers.utils.parseEther("1.5"));
 
-            TimeHelper.advanceTimeAndBlock(9);
+            await TimeHelper.advanceTimeAndBlock(9);
 
             // Check veNETT balance before claim
             expect(await this.veNETT.balanceOf(this.alice.address)).to.be.equal(0);
@@ -579,7 +579,7 @@ describe("VeNETTStaking Contract", function () {
                 .deposit(ethers.utils.parseEther("100"));
             
             const block = await ethers.provider.getBlock();
-            TimeHelper.advanceTimeAndBlock(29);
+            await TimeHelper.advanceTimeAndBlock(29);
 
             const accVeNETTPerShareBeforeUpdate =
                 await this.veNETTStaking.accVeNETTPerShare();
