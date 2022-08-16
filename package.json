@@ -18,7 +18,9 @@
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@openzeppelin/contracts": "3.1.0",
+    "@openzeppelin/contracts": "^3.1.0",
+    "@openzeppelin/contracts-upgradeable": "3.3.0",
+    "@openzeppelin/hardhat-upgrades": "^1.12.0",
     "chai": "^4.3.4",
     "commander": "^6.1.0",
     "dotenv": "^10.0.0",

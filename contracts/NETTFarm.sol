@@ -9,7 +9,7 @@ import "./libs/EnumerableSet.sol";
 import "./libs/Address.sol";
 import "./libs/BoringERC20.sol";
 
-interface NETT {
+interface INETT {
     function mint(address _to, uint256 _amount) external;
     function transfer(address recipient, uint256 amount) external returns (bool);
     function balanceOf(address account) external view returns (uint256);
@@ -60,7 +60,7 @@ contract NETTFarm is Ownable {
     }
 
     // The NETT token!
-    NETT public nett;
+    INETT public nett;
     // Dev address
     address public devAddr;
     // Percentage of pool rewards that goto the devs. Divided by 100.
@@ -90,7 +90,7 @@ contract NETTFarm is Ownable {
     event UpdateEmissionRate(address indexed user, uint256 _nettPerSec);
 
     constructor(
-        NETT _nett,
+        INETT _nett,
         address _devAddr,
         uint256 _nettPerSec,
         uint256 _startTimestamp
