@@ -33,12 +33,14 @@ module.exports = {
     hardhat: {
     },
     mainnet: {
+      chainId: 1088,
       url: 'https://andromeda.metis.io/?owner=1088',
       accounts: {
         mnemonic,
       }
     },
     testnet: {
+      chainId: 588,
       url: 'https://stardust.metis.io/?owner=588',
       accounts: {
         mnemonic,
