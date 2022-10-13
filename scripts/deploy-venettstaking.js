@@ -9,16 +9,16 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 588 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
     // const veNETTCF = await hre.ethers.getContractFactory('VeNETT');
     const veNETTStakingCF = await hre.ethers.getContractFactory('VeNETTStaking');
 
-    const veNETTObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/veNETT.json`);
+    const veNETTObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/veNETT.json`);
     const veNETTAddr = veNETTObj.veNETT;
-    const NETTObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/NETT.json`);
+    const NETTObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/NETT.json`);
     const NETTAddr = NETTObj.NETT;
     const veNETTPerSharePerSec = '3170979198376';
     const speedUpVeNETTPerSharePerSec = '3170979198376';
@@ -48,12 +48,7 @@ async function main() {
         veNETTStakingProxy: veNETTStakingProxy.address,
     };
 
-    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/veNETTStakingProxy.json`), JSON.stringify(addresses, null, 4));
-
-    // transfer veNETT ownership to veNETTStaking
-    // const veNETT = veNETTCF.attach(veNETTAddr);
-    // await veNETT.transferOwnership(veNETTStakingProxy.address);
-    // console.log('transfer veNETT ownership to veNETTStaking');
+    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/veNETTStakingProxy.json`), JSON.stringify(addresses, null, 4));
 }
 
 main()

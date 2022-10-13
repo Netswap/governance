@@ -40,8 +40,8 @@ module.exports = {
       }
     },
     testnet: {
-      chainId: 588,
-      url: 'https://stardust.metis.io/?owner=588',
+      chainId: 599,
+      url: 'https://goerli.gateway.metisdevops.link',
       accounts: {
         mnemonic,
       },

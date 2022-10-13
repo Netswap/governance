@@ -2,7 +2,7 @@ const hre = require('hardhat');
 const fs = require('fs');
 
 // For test
-const LPToken = '0x1DdF972f2cCBF896B4df62bEfb434f7e9F553634';
+const LPToken = '0xDf4a2921Eb891A00c2Ad36Ae09D4270F24cEA868';
 
 async function main() {
     const accounts = await ethers.getSigners();
@@ -11,13 +11,13 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 588 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
     const BoostedNETTFarmCF = await hre.ethers.getContractFactory('BoostedNETTFarm');
 
-    const BoostedNETTFarmObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`);
+    const BoostedNETTFarmObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`);
     const BoostedNETTFarmAddr = BoostedNETTFarmObj.BoostedNETTFarmProxy;
 
     const BoostedNETTFarm = BoostedNETTFarmCF.attach(BoostedNETTFarmAddr);

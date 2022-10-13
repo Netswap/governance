@@ -9,20 +9,20 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 588 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
     const BoostedNETTFarmCF = await hre.ethers.getContractFactory('BoostedNETTFarm');
 
-    const veNETTObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/veNETT.json`);
+    const veNETTObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/veNETT.json`);
     const veNETTAddr = veNETTObj.veNETT;
-    const NETTObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/NETT.json`);
+    const NETTObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/NETT.json`);
     const NETTAddr = NETTObj.NETT;
-    const NETTFarmObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/NETTFarm.json`)
+    const NETTFarmObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/NETTFarm.json`)
     const NETTFarmAddr = NETTFarmObj.NETTFarm;
     // TODO
-    const MASTER_PID = chainId === 588 ? 0 : 20;
+    const MASTER_PID = chainId === 599 ? 0 : 20;
 
     const BoostedNETTFarmProxy = await hre.upgrades.deployProxy(
         BoostedNETTFarmCF,
@@ -43,7 +43,7 @@ async function main() {
         BoostedNETTFarmProxy: BoostedNETTFarmProxy.address,
     };
 
-    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`), JSON.stringify(addresses, null, 4));
+    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`), JSON.stringify(addresses, null, 4));
 }
 
 main()

@@ -8,7 +8,7 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 588 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
@@ -16,16 +16,16 @@ async function main() {
     const BoostedNETTFarmCF = await hre.ethers.getContractFactory('BoostedNETTFarm');
     const ERC20MockCF = await hre.ethers.getContractFactory('ERC20Mock');
 
-    const veNETTObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/veNETT.json`);
+    const veNETTObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/veNETT.json`);
     const veNETTAddr = veNETTObj.veNETT;
 
-    const veNETTStakingObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/veNETTStakingProxy.json`);
+    const veNETTStakingObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/veNETTStakingProxy.json`);
     const veNETTStakingAddr = veNETTStakingObj.veNETTStakingProxy;
 
-    const BoostedNETTFarmObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`);
+    const BoostedNETTFarmObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`);
     const BoostedNETTFarmAddr = BoostedNETTFarmObj.BoostedNETTFarmProxy;
 
-    const dummyTokenObj = require(`../deployments/${chainId === 588 ? 'testnet' : 'mainnet'}/dummyToken.json`)
+    const dummyTokenObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/dummyToken.json`)
     const dummyTokenAddr = dummyTokenObj.dummyToken;
 
     const veNETT = veNETTCF.attach(veNETTAddr);
