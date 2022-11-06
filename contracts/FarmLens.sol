@@ -467,7 +467,7 @@ contract FarmLens {
             farmInfo.token0Symbol = token0.safeSymbol();
             farmInfo.token1Symbol = token1.safeSymbol();
             farmInfo.reserveUsd = _getDerivedMetisLiquidityOfPair(lpToken).mul(metisPrice) / PRECISION;
-            // LP is in 18 decimals, so it's already scaled for JLP
+            // LP is in 18 decimals, so it's already scaled for NLP
             farmInfo.totalSupplyScaled = lpToken.totalSupply();
             farmInfo.farmBalanceScaled = pool.totalLpSupply;
             farmInfo.userLp = user.amount;

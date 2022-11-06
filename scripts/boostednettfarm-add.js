@@ -1,8 +1,8 @@
 const hre = require('hardhat');
 const fs = require('fs');
 
-// For test
-const LPToken = '0xDf4a2921Eb891A00c2Ad36Ae09D4270F24cEA868';
+// For test Metis/TUSDC
+const LPToken = '0xF6971Ec05557f680b0a8Cd8296C352A115a6e6bd';
 
 async function main() {
     const accounts = await ethers.getSigners();
