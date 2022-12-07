@@ -61,5 +61,29 @@ module.exports = {
       }
     ]
   },
+  etherscan: {
+    apiKey: {
+      metisgoerli: "a non-empty string or just use api-key",
+      andromeda: "a non-empty string or just use api-key",
+    },
+    customChains: [
+      {
+        network: "andromeda",
+        chainId: 1088,
+        urls: {
+          apiURL: "https://andromeda-explorer.metis.io/api",
+          browserURL: "https://andromeda-explorer.metis.io",
+        },
+      },
+      {
+        network: "metisgoerli",
+        chainId: 599,
+        urls: {
+          apiURL: "https://goerli.explorer.metisdevops.link/api",
+          browserURL: "https://goerli.explorer.metisdevops.link",
+        },
+      },
+    ],
+  },
 };
 

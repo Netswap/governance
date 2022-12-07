@@ -13,8 +13,6 @@ async function main() {
     }
 
     const veNETTCF = await hre.ethers.getContractFactory('VeNETT');
-    const BoostedNETTFarmCF = await hre.ethers.getContractFactory('BoostedNETTFarm');
-    const ERC20MockCF = await hre.ethers.getContractFactory('ERC20Mock');
 
     const veNETTObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/veNETT.json`);
     const veNETTAddr = veNETTObj.veNETT;
@@ -25,12 +23,7 @@ async function main() {
     const BoostedNETTFarmObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`);
     const BoostedNETTFarmAddr = BoostedNETTFarmObj.BoostedNETTFarmProxy;
 
-    const dummyTokenObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/dummyToken.json`)
-    const dummyTokenAddr = dummyTokenObj.dummyToken;
-
     const veNETT = veNETTCF.attach(veNETTAddr);
-    const BoostedNETTFarm = BoostedNETTFarmCF.attach(BoostedNETTFarmAddr);
-    const dummyToken = ERC20MockCF.attach(dummyTokenAddr);
 
     // set boostednettfarm address
     await veNETT.setBoostedNETTFarm(BoostedNETTFarmAddr);
@@ -38,12 +31,6 @@ async function main() {
     // transfer ownership of veNETT to veNETTStaking
     await veNETT.transferOwnership(veNETTStakingAddr);
     console.log('transferOwnership executed');
-    // approve BoostedNETTFarm to use dummyToken
-    await dummyToken.approve(BoostedNETTFarmAddr, 1);
-    console.log('approve executed');
-    // init boostednettfarm
-    await BoostedNETTFarm.init(dummyTokenAddr);
-    console.log('init executed');
 }
 
 main()

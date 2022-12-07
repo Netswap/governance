@@ -23,7 +23,7 @@ async function main() {
             metisUsdc: '0x5ae3ee7fbb3cb28c17e7adc3a6ae605ae2465091',
             factory: '0x70f51d68D16e8f9e418441280342BD43AC9Dff9f',
             ntf: '0x9d1dbB49b2744A1555EDbF1708D64dC71B0CB052',
-            bntf: ''
+            bntf: '0x5E1f9Cd1B9635506af6Bc3B2414AC9C8b2840EFa'
         },
         testnet: {
             nett: '0xA49efFF1961C0aF60519887E390e9954952176f8',
