@@ -11,13 +11,13 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 59902 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
     const BoostedNETTFarmCF = await hre.ethers.getContractFactory('BoostedNETTFarm');
 
-    const BoostedNETTFarmObj = require(`../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`);
+    const BoostedNETTFarmObj = require(`../deployments/${chainId === 59902 ? 'testnet' : 'mainnet'}/BoostedNETTFarmProxy.json`);
     const BoostedNETTFarmAddr = BoostedNETTFarmObj.BoostedNETTFarmProxy;
 
     const BoostedNETTFarm = BoostedNETTFarmCF.attach(BoostedNETTFarmAddr);

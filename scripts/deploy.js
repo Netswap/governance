@@ -36,7 +36,7 @@ async function main() {
 
     console.log(addresses);
 
-    fs.writeFileSync(`${__dirname}/mainnet-addresses.json`, JSON.stringify(addresses, null, 4));
+    fs.writeFileSync(`${__dirname}/${chainId === 59902 ? 'testnet' : 'mainnet'}-addresses.json`, JSON.stringify(addresses, null, 4));
 }
 
 main()

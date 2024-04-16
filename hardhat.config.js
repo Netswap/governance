@@ -19,11 +19,14 @@ task("accounts", "Prints the list of accounts", async () => {
 // Go to https://hardhat.org/config/ to learn more
 
 let mnemonic;
-if (!process.env.MNEMONIC) {
-  throw new Error("Please set your MNEMONIC in a .env file");
+if (!process.env.MNEMONIC && !process.env.PRIVATE_KEY) {
+    throw new Error("Please set your MNEMONIC or PRIVATE_KEY in a .env file");
 } else {
-  mnemonic = process.env.MNEMONIC;
+    mnemonic = process.env.MNEMONIC;
+    privateKey = process.env.PRIVATE_KEY;
 }
+
+const accounts = privateKey ? [process.env.PRIVATE_KEY] : { mnemonic };
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -35,16 +38,12 @@ module.exports = {
     mainnet: {
       chainId: 1088,
       url: 'https://andromeda.metis.io/?owner=1088',
-      accounts: {
-        mnemonic,
-      }
+      accounts
     },
     testnet: {
-      chainId: 599,
-      url: 'https://goerli.gateway.metisdevops.link',
-      accounts: {
-        mnemonic,
-      },
+      chainId: 59902,
+      url: 'https://sepolia.metisdevops.link',
+      accounts,
       gasPrice: 1000000000,
     },
   },
@@ -63,7 +62,7 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      metisgoerli: "a non-empty string or just use api-key",
+      testnet: "a non-empty string or just use api-key",
       andromeda: "a non-empty string or just use api-key",
     },
     customChains: [
@@ -76,13 +75,13 @@ module.exports = {
         },
       },
       {
-        network: "metisgoerli",
-        chainId: 599,
-        urls: {
-          apiURL: "https://goerli.explorer.metisdevops.link/api",
-          browserURL: "https://goerli.explorer.metisdevops.link",
-        },
-      },
+          network: "testnet",
+          chainId: 59902,
+          urls: {
+              apiURL: "https://sepolia-explorer-api.metisdevops.link/api",
+              browserURL: "https://sepolia-explorer.metisdevops.link/",
+          }
+      }
     ],
   },
 };

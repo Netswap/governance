@@ -9,7 +9,7 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 59902 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
@@ -38,7 +38,7 @@ async function main() {
 
     let parameters;
 
-    if (chainId == 599) {
+    if (chainId == 59902) {
         parameters = config.testnet;
     } else {
         parameters = config.mainnet;
@@ -62,7 +62,7 @@ async function main() {
 
     console.log(addresses);
 
-    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/FarmLens.json`), JSON.stringify(addresses, null, 4));
+    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 59902 ? 'testnet' : 'mainnet'}/FarmLens.json`), JSON.stringify(addresses, null, 4));
 }
 
 main()

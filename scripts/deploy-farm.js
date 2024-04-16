@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Testnet NETT
-const NETT = '0xA49efFF1961C0aF60519887E390e9954952176f8';
+const NETT = '0xA84C8F89A64DC5cbf3eCe1AEcbCbb75230aE3ADb';
 // Mainnet NETT
 // const NETT = '0x90fE084F877C65e1b577c7b2eA64B8D8dd1AB278'
 
@@ -22,7 +22,7 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 59902 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
@@ -43,7 +43,7 @@ async function main() {
 
     console.log(addresses);
 
-    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/NETTFarm.json`), JSON.stringify(addresses, null, 4));
+    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 59902 ? 'testnet' : 'mainnet'}/NETTFarm.json`), JSON.stringify(addresses, null, 4));
 }
 
 main()

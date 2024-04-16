@@ -9,7 +9,7 @@ async function main() {
 
     const chainId = hre.network.config.chainId;
 
-    if (!chainId || (chainId !== 599 && chainId !== 1088)) {
+    if (!chainId || (chainId !== 59902 && chainId !== 1088)) {
         throw new Error("Please input --network args and correct network");
     }
 
@@ -23,7 +23,7 @@ async function main() {
         veNETT: veNETT.address,
     };
 
-    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 599 ? 'testnet' : 'mainnet'}/veNETT.json`), JSON.stringify(addresses, null, 4));
+    fs.writeFileSync(path.resolve(__dirname, `../deployments/${chainId === 59902 ? 'testnet' : 'mainnet'}/veNETT.json`), JSON.stringify(addresses, null, 4));
 }
 
 main()
